@@ -1,0 +1,8 @@
+<h2>NGXS store example</h2>
+<app-dashboard-ngxs
+  [students]="students$ | async"
+  (removeStudent)="handleRemoveStudent($event)"
+  (saveStudent)="handleSaveStudent($event)"
+>
+
+</app-dashboard-ngxs>

@@ -1,0 +1,43 @@
+<mat-card>
+  <mat-card-title>Student Dashboard</mat-card-title>
+  <mat-card-content>
+    <form [formGroup]="studentForm" (ngSubmit)="onSubmit()">
+      <p>
+        <mat-form-field>
+          <input type="text"
+                 matInput
+                 placeholder="Student name"
+                 formControlName="name"
+          >
+        </mat-form-field>
+      </p>
+
+      <p>
+        <mat-form-field>
+          <input type="text"
+                 matInput
+                 placeholder="Course"
+                 formControlName="course"
+          >
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field>
+          <input type="number"
+                 matInput
+                 placeholder="Average Mark"
+                 formControlName="averageMark"
+          >
+        </mat-form-field>
+      </p>
+
+      <div>
+        <button mat-button type="submit" color="primary">Add Student</button>
+      </div>
+
+    </form>
+  </mat-card-content>
+  <app-students-info-ngxs [dataSource]="students" (removeStudent)="handleRemoveStudent($event)"></app-students-info-ngxs>
+</mat-card>
+
+
