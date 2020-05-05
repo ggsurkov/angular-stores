@@ -17,16 +17,24 @@ import {NgxsExampleComponent} from "./component/ngxs-example/container/ngxs-exam
 import {DashboardNgxsComponent} from "./component/ngxs-example/components/ngxs-dashboard/dashboard-ngxs.component";
 import {StudentsInfoNgxsComponent} from "./component/ngxs-example/components/ngxs-dashboard/students-info/students-info-ngxs.component";
 import {NgxsExampleState} from "./component/ngxs-example/state/ngxs-example.state";
+import {ObserverExampleComponent} from "./component/observer-example/observer-example.component";
+import {DashboardObserverComponent} from "./component/observer-example/dashboard/dashboard-observer.component";
+import {StudentsInfoObserverComponent} from "./component/observer-example/dashboard/students-info/students-info-observer.component";
+import {ObserverExampleService} from "./component/observer-example/services/observer-example.service";
+import {ObserverProvider} from "./component/observer-example/providers/observer-provider";
 
 @NgModule({
   declarations: [
     AppComponent,
     RxjsExampleComponent,
     NgxsExampleComponent,
+    ObserverExampleComponent,
     DashboardComponent,
     DashboardNgxsComponent,
+    DashboardObserverComponent,
     StudentsInfoComponent,
-    StudentsInfoNgxsComponent
+    StudentsInfoNgxsComponent,
+    StudentsInfoObserverComponent
   ],
   imports: [
     BrowserModule,
@@ -40,9 +48,10 @@ import {NgxsExampleState} from "./component/ngxs-example/state/ngxs-example.stat
     MatCardModule,
     NgxsModule.forRoot([NgxsExampleState], {
       developmentMode: !environment.production
-    })
+    }),
+
   ],
-  providers: [],
+  providers: [ObserverExampleService, ObserverProvider],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

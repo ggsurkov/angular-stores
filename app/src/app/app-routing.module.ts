@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {RxjsExampleComponent} from "./component/rxjs-example/rxjs-example.component";
 import {NgxsExampleComponent} from "./component/ngxs-example/container/ngxs-example.component";
+import {ObserverExampleComponent} from "./component/observer-example/observer-example.component";
 
 const routes: Routes = [
   {
@@ -14,7 +15,7 @@ const routes: Routes = [
   },
   {
     path: 'observer-example',
-    component: RxjsExampleComponent
+    component: ObserverExampleComponent
   },
 ];
 
