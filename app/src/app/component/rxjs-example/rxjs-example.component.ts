@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {RxjsStoreService} from "./store/rxjs-store.service";
 
 @Component({
@@ -7,7 +7,8 @@ import {RxjsStoreService} from "./store/rxjs-store.service";
   styleUrls: ['./rxjs-example.component.scss']
 })
 export class RxjsExampleComponent implements OnInit {
-  constructor(public rxjsStoreService: RxjsStoreService) { }
+  constructor(public rxjsStoreService: RxjsStoreService) {
+  }
 
   ngOnInit() {
 

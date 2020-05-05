@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {RxjsStoreService} from "../../store/rxjs-store.service";
 import {StudentModel} from "../../../model/student.model";
+import {RxjsStoreDataModel} from "../../store/rxjs-store.model";
 
 @Component({
   selector: 'app-students-info',
@@ -16,7 +17,9 @@ export class StudentsInfoComponent implements OnInit {
   }
 
   public deleteStudent(id: string): void {
-    this.rxjsStoreService.removeStudent(id);
+    this.rxjsStoreService.removeStudent(id).then((data: RxjsStoreDataModel) => {
+      console.log('deletedStudent success! ', data);
+    });
   }
 
 }

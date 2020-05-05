@@ -1,17 +1,7 @@
-import {
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  Component,
-  EventEmitter,
-  NgZone,
-  OnDestroy,
-  OnInit
-} from '@angular/core';
-import {setDefaultStudent, StudentModel} from "../model/student.model";
+import {Component, EventEmitter, OnDestroy, OnInit} from '@angular/core';
+import {StudentModel} from "../model/student.model";
 import {ObserverExampleService} from "./services/observer-example.service";
 import {ObserverDataModel, ObserverProvider} from "./providers/observer-provider";
-import {BehaviorSubject, Observable, Subject} from "rxjs";
-import {ChangeDetection} from "@angular/cli/lib/config/schema";
 
 @Component({
   selector: 'app-observer-example',
@@ -21,12 +11,13 @@ import {ChangeDetection} from "@angular/cli/lib/config/schema";
 export class ObserverExampleComponent implements OnInit, OnDestroy {
   public students: StudentModel[] = this.observerExampleService.getAllStudents();
   public studentsObserver: EventEmitter<ObserverDataModel> = new EventEmitter<ObserverDataModel>();
+
   constructor(private observerExampleService: ObserverExampleService,
-              private observerProvider: ObserverProvider) { }
+              private observerProvider: ObserverProvider) {
+  }
 
   ngOnInit() {
     this.observerProvider.addSubscriber(this.studentsObserver)
-    // this.students ;
     this.studentsObserver.subscribe((data: ObserverDataModel) => {
       this.students = this.observerProvider.updateData(data)
     })

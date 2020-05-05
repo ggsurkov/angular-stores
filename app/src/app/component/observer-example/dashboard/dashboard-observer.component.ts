@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {StudentModel} from "../../model/student.model";
 import {ObserverProvider} from "../providers/observer-provider";
@@ -11,10 +11,12 @@ import {ObserverProvider} from "../providers/observer-provider";
 export class DashboardObserverComponent implements OnInit {
   public studentForm: FormGroup;
   @Input() students: StudentModel[];
-  constructor(private formBuilder: FormBuilder, private observerProvider: ObserverProvider) { }
+
+  constructor(private formBuilder: FormBuilder, private observerProvider: ObserverProvider) {
+  }
 
   public ngOnInit(): void {
-    this.studentForm = this.formBuilder.group( {
+    this.studentForm = this.formBuilder.group({
       name: '',
       course: '',
       averageMark: null,
@@ -23,6 +25,10 @@ export class DashboardObserverComponent implements OnInit {
   }
 
   public onSubmit(): void {
-    this.observerProvider.publishStudent({student: this.studentForm.value, action: this.observerProvider.actions.add, students: this.students})
+    this.observerProvider.publishStudent({
+      student: this.studentForm.value,
+      action: this.observerProvider.actions.add,
+      students: this.students
+    })
   }
 }

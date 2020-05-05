@@ -1,13 +1,4 @@
-import {
-  ChangeDetectionStrategy, ChangeDetectorRef,
-  Component,
-  EventEmitter,
-  Input,
-  OnChanges,
-  OnDestroy,
-  OnInit,
-  SimpleChanges
-} from '@angular/core';
+import {Component, Input,} from '@angular/core';
 import {StudentModel} from "../../../model/student.model";
 import {ObserverProvider} from "../../providers/observer-provider";
 
@@ -18,10 +9,16 @@ import {ObserverProvider} from "../../providers/observer-provider";
 })
 export class StudentsInfoObserverComponent {
   @Input() dataSource: StudentModel[];
-  constructor(private observerProvider: ObserverProvider, private cdr: ChangeDetectorRef) { }
+
+  constructor(private observerProvider: ObserverProvider) {
+  }
 
   public deleteStudent(student: StudentModel): void {
-    this.observerProvider.publishStudent({student: student, action: this.observerProvider.actions.remove, students: this.dataSource})
+    this.observerProvider.publishStudent({
+      student: student,
+      action: this.observerProvider.actions.remove,
+      students: this.dataSource
+    })
   }
 
 }

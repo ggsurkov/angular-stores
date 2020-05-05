@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {RxjsStoreService} from "../store/rxjs-store.service";
 import {StudentModel} from "../../model/student.model";
+import {RxjsStoreDataModel} from "../store/rxjs-store.model";
 
 @Component({
   selector: 'app-dashboard',
@@ -23,6 +24,8 @@ export class DashboardComponent implements OnInit {
   }
 
   public onSubmit(): void {
-    this.rxjsStoreService.addStudent(this.studentForm.value)
+    this.rxjsStoreService.addStudent(this.studentForm.value).then((data: RxjsStoreDataModel) => {
+      console.log('addStudent success! ', data);
+    })
   }
 }

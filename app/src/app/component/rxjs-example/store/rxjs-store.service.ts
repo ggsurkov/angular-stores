@@ -1,4 +1,4 @@
-import {Injectable, OnInit} from '@angular/core';
+import {Injectable} from '@angular/core';
 import {setDefaultStudent, StudentModel} from "../../model/student.model";
 import {RxjsStatesModel, RxjsStoreDataModel, RxjsStoreModel, setRxJsStates, setRxJsStore} from "./rxjs-store.model";
 import {setGuid} from "../../../guid.util";
@@ -39,18 +39,21 @@ export class RxjsStoreService {
     }
   }
 
-  async addStudent(newStudent: StudentModel) {
+  async addStudent(newStudent: StudentModel): Promise<any> {
     if (newStudent) {
       newStudent.id = setGuid();
       this.setStore = {students: [...this.getStore.students, newStudent], departments: [...this.getStore.departments]};
-      console.log('addStudent success! ', this.getStore);
+      return this.getStore;
     }
   }
 
-  async removeStudent(id: string) {
+  async removeStudent(id: string): Promise<any> {
     const deletedStudent = this.getStore.students.find(t => t.id === id);
-    if (deletedStudent) this.setStore = {students: this.getStore.students.filter(student => student.id !== id), departments: [...this.getStore.departments]};
-    console.log('deletedStudent success! ', this.getStore);
+    if (deletedStudent) this.setStore = {
+      students: this.getStore.students.filter(student => student.id !== id),
+      departments: [...this.getStore.departments]
+    };
+    return this.getStore;
   }
 
   async fetchAll() {
